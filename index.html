@@ -248,47 +248,67 @@
     letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--c3); margin-top: 10px; display: block;
   }
-  /* SKILLS */
-  #skills { background: var(--c5); }
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(3,1fr);
-    gap: 2px; margin-top: 60px;
-  }
-  .sk-card {
-    background: var(--white); padding: 40px 34px;
-    position: relative; overflow: hidden;
-    transition: background 0.3s, color 0.3s;
-  }
-  .sk-card::after {
-    content: ''; position: absolute;
-    bottom: 0; left: 0; right: 0; height: 2px;
-    background: var(--c0);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .sk-card:hover { background: var(--c0); }
-  .sk-card:hover::after { transform: scaleX(1); }
-  .sk-card:hover .sk-name,
-  .sk-card:hover .sk-desc { color: var(--white); }
-  .sk-card:hover .tag { border-color: var(--c2); color: var(--c3); }
-  .sk-icon { font-size: 1.5rem; margin-bottom: 18px; display: block; }
-  .sk-name {
-    font-family: var(--font-display); font-size: 1.35rem;
-    font-weight: 400; color: var(--c0); margin-bottom: 10px;
-    transition: color 0.3s;
-  }
-  .sk-desc {
-    font-size: 0.8rem; font-weight: 300;
-    color: var(--c2); line-height: 1.75; margin-bottom: 18px;
-    transition: color 0.3s;
-  }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    font-family: var(--font-mono); font-size: 0.58rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 4px 9px; border: 1px solid var(--c4);
-    color: var(--c2); transition: all 0.3s;
-  }
+/* SKILLS */
+#skills { background: var(--c5); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px; /* smaller gap for mobile */
+  margin-top: 60px;
+}
+.sk-card {
+  background: var(--white);
+  padding: 24px; /* reduced padding for smaller screens */
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+  min-height: 180px; /* prevent collapse */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sk-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--c0);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.sk-card:hover { background: var(--c0); }
+.sk-card:hover::after { transform: scaleX(1); }
+.sk-card:hover .sk-name,
+.sk-card:hover .sk-desc { color: var(--white); }
+.sk-card:hover .tag { border-color: var(--c2); color: var(--c3); }
+.sk-icon { font-size: 1.5rem; margin-bottom: 18px; display: block; }
+.sk-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--c0);
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+.sk-desc {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--c2);
+  line-height: 1.75;
+  margin-bottom: 18px;
+  transition: color 0.3s;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border: 1px solid var(--c4);
+  color: var(--c2);
+  transition: all 0.3s;
+}
   /* PROJECTS */
   #projects { background: var(--white); }
   .proj-grid {
@@ -473,25 +493,15 @@
     transition: opacity 0.85s ease, transform 0.85s ease;
   }
   .reveal.in { opacity: 1; transform: translateY(0); }
-  /* RESPONSIVE */
-  @media(max-width:920px) {
-    #hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    nav { padding: 22px 28px; }
-    nav.scrolled { padding: 14px 28px; }
-    .container { padding: 0 28px; }
-    .nav-links { display: none; }
-    .hero-left { padding: 120px 28px 60px; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .proj-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px; }
-    .scroll-hint { display: none; }
-  }
-  @media(max-width:560px) {
-    .skills-grid { grid-template-columns: 1fr; }
-    .about-stats { grid-template-columns: 1fr 1fr; }
-  }
+  /* RESPONSIVE FIXES FOR CARDS */
+@media(max-width:920px) {
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .sk-card { padding: 20px; min-height: 160px; }
+}
+@media(max-width:560px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .sk-card { padding: 16px; min-height: 140px; }
+}
 </style>
 </head>
 <body>
